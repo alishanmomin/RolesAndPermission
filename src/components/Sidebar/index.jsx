@@ -25,6 +25,9 @@ const Sidebar = ({index}) =>
                         <div onClick={() => handleRoute('articles')}  className={index === 1 ? "sideBar_title sideBar_active": "sideBar_title"}>
                             <i className="fas fa-home"></i>Articles
                         </div>
+                        <div onClick={() => handleRoute('roles')}  className={index === 2 ? "sideBar_title sideBar_active": "sideBar_title"}>
+                            <i className="fas fa-user"></i>Roles
+                        </div>
                         <div onClick={() => handleRoute('logout')} className="sideBar_title">
                             <i className="fas fa-power-off"></i>Logout
                         </div>

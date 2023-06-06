@@ -1,9 +1,7 @@
 import React from "react";
 
-const EditArticle = ({ setModal, handleUpdate, values, setValues }) =>
+const EditArticle = ({ role, setModal, handleUpdate, values, setValues }) =>
 {
-    console.log("values", values)
-
     const handleInput = (e) => {
         setValues({...values, [e.target.name]: e.target.value})
     }    

@@ -15,6 +15,7 @@ const Articles = () =>
 
     const dispatch = useDispatch()
     const { ArticleData } = useSelector((data) => data.articles)
+    const { role } = useSelector((data) => data.roles)
 
     const handleAddArticle = () =>
     {
@@ -77,12 +78,13 @@ const Articles = () =>
                                 <p className="article_head">Articles</p>
                             </div>
                             <div className="article_right">
-                                <button className="article_create" onClick={() => setModal('add')}>Add</button>
+                                {<button className="article_create" onClick={() => {role !== 'viewer' ? setModal('add') : toast.error("You are not allowed to perform this operation. Kindly update your role.")}}>Add</button>}
                             </div>
                         </div>
                         <div className="article_parent">
                             {ArticleData.map((item, index) => (
                                 <ArticleCards
+                                    role={role}
                                     key={index}
                                     item={item}
                                     index={index}

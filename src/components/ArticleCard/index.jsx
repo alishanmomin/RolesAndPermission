@@ -1,8 +1,30 @@
 import React, { useState} from "react";
+import { toast } from "react-toastify";
 
-const ArticleCards = ({ item, handleDelete, setModal, setValues }) =>
+const ArticleCards = ({ role, item, handleDelete, setModal, setValues }) =>
 {
     const [clickIndex, setClickIndex] = useState(false);
+
+    const deleteHandler = () => {
+        if(role === 'admin'){
+            handleDelete(item.id); 
+            setClickIndex(false)
+        } else {
+            toast.error("You are not allowed to perform this operation. Kindly update your role.")
+            setClickIndex(false)
+        }
+    }
+
+    const updateHandler = () => {
+        if(role === 'admin' || role === 'editor'){
+            setValues(item); 
+            setModal('edit'); 
+            setClickIndex(false)
+        } else {
+            toast.error("You are not allowed to perform this operation. Kindly update your role.")
+            setClickIndex(false)
+        }
+    }
 
     return (
         <div className="article_all">
@@ -20,10 +42,10 @@ const ArticleCards = ({ item, handleDelete, setModal, setValues }) =>
                         {
                             clickIndex && 
                         <div className="article_toolTip shadow">
-                            <div onClick={() => {handleDelete(item.id); setClickIndex(false)}}>
+                            <div onClick={deleteHandler}>
                                 <i class="fas fa-trash"></i> Delete
                             </div>
-                            <div onClick={() => {setValues(item); setModal('edit'); setClickIndex(false)}}>
+                            <div onClick={updateHandler}>
                                 <i class="fas fa-edit"></i> Update
                             </div>
                         </div>
