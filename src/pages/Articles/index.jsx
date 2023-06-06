@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import Sidebar from "../../components/Sidebar";
 // import DeleteModal from "../../components/Modals/deleteModal";
 import { toast } from "react-toastify";
+import ArticleCards from "../../components/ArticleCard";
+import { ArticleData } from "../../utils/ArticleData";
 
 const Articles = () =>
 {
@@ -75,82 +77,12 @@ const Articles = () =>
                                 <p className="article_head">Articles</p>
                             </div>
                             <div className="article_right">
-                                <input className="article_input" type="date" />
-                                <input
-                                    className="article_input"
-                                    type="search"
-                                    placeholder="Search employee"
-                                />
+                                <button>Add</button>
                             </div>
                         </div>
                         <div className="article_parent">
-                            {arr.map((index) => (
-                                <div className="article_all">
-                                    <div className="article_content">
-                                        <div className="article_layout">
-                                            <div className="article_top">
-                                                <div className="circle">
-                                                    <i className="fas fa-save"></i>
-                                                </div>
-                                                <p>Issue #921278</p>
-                                            </div>
-                                            <div className="corner">
-                                                <p>2023-11-10</p>
-                                                {clickIndex ? (
-                                                    <i
-                                                        onClick={(e) =>
-                                                        {
-                                                            e?.stopPropagation();
-                                                            handleToggler(index);
-                                                        }}
-                                                        className="fas fa-ellipsis-v"
-                                                    ></i>
-                                                ) : (
-                                                    <i
-                                                        onClick={(e) =>
-                                                        {
-                                                            e?.stopPropagation();
-                                                            handleToggler("close");
-                                                        }}
-                                                        className="fas fa-ellipsis-v"
-                                                    ></i>
-                                                )}
-
-                                                {clickIndex === index && (
-                                                    <div
-                                                        ref={tooltipRef}
-                                                        className="article_toolTip shadow"
-                                                    >
-                                                        <div
-                                                            onClick={() =>
-                                                            {
-                                                                setModal("delete");
-                                                            }}
-                                                        >
-                                                            <i class="fa-regular fa-trash-can"></i> Delete
-                                                        </div>
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </div>
-                                        <p className="article_title">
-                                            How to get assests of prototype design ?
-                                        </p>
-                                        <p className="article_desc">
-                                            {" "}
-                                            it to make a type specimen book. It has survived not only
-                                            five centuries, but also the leap into electronic
-                                            typesetting, remaining essentially unchanged. It was
-                                            popularised in the 1960s with the release of Letraset
-                                            sheets containing Lorem Ipsum passages, and more recently
-                                            with desktop publishing
-                                        </p>
-                                        <div className="article_bottom">
-                                            <p className="name">Syamar Kit</p>
-                                            <p className="role">Web Developer</p>
-                                        </div>
-                                    </div>
-                                </div>
+                            {ArticleData.map((item, index) => (
+                                <ArticleCards key={index} item={item} index={index} setModal={setModal}/>
                             ))}
                         </div>
                     </div>
