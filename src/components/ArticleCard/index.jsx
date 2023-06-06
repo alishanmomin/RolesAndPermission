@@ -1,10 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { removeArticle } from "../../redux/reducers/articles";
 
 const ArticleCards = ({ item, index, setModal }) =>
 {
     const [clickIndex, setClickIndex] = useState(false);
-    const tooltipRef = useRef();
+    const dispatch = useDispatch()
 
+    const handleDelete = (id) => {
+        dispatch(removeArticle(id))
+    }
     return (
         <div className="article_all">
             <div className="article_content">
@@ -21,7 +26,7 @@ const ArticleCards = ({ item, index, setModal }) =>
                         {
                             clickIndex && 
                         <div className="article_toolTip shadow">
-                            <div onClick={() => { setModal("delete") }}>
+                            <div onClick={() => handleDelete(item.id)}>
                                 <i class="fa-regular fa-trash-can"></i> Delete
                             </div>
                         </div>

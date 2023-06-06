@@ -3,62 +3,27 @@ import Sidebar from "../../components/Sidebar";
 // import DeleteModal from "../../components/Modals/deleteModal";
 import { toast } from "react-toastify";
 import ArticleCards from "../../components/ArticleCard";
-import { ArticleData } from "../../utils/ArticleData";
+// import { ArticleData } from "../../utils/ArticleData";
+import { useDispatch, useSelector } from "react-redux";
+import { addArticle } from "../../redux/reducers/articles";
 
 const Articles = () =>
 {
-    let arr = [1, 2, 3, 4, 5, 6, 7, 8];
-    const [clickIndex, setClickIndex] = useState(-1);
-    const tooltipRef = useRef();
     const [modal, setModal] = useState("");
-
-    //  handle toggler
-    const handleToggler = (index) =>
-    {
-        if (index === "close")
-        {
-            setClickIndex(-1);
-        } else
-        {
-            setClickIndex(index);
+    const dispatch = useDispatch()
+    const {ArticleData} = useSelector((data)=> data.articles)
+    
+    const handleAdd = () => {
+        let body = {
+            id: 7,
+            date: 2023 - 10 - 11,
+            title: "My new Added Data",
+            description: "loreum ipsum",
+            author: "Ali Shan",
+            designation: "Writer"
         }
-    };
-
-    // handle delete
-    const handleDelete = (res) =>
-    {
-        if (res === "cancel")
-        {
-            setModal("");
-        } else
-        {
-            setModal("");
-            toast.success("article Deleted Succesfully");
-        }
-    };
-
-    useEffect(() =>
-    {
-        // Function to handle clicks outside the tooltip
-        const handleClickOutside = (event) =>
-        {
-            if (tooltipRef.current && !tooltipRef.current.contains(event.target))
-            {
-                setClickIndex(false);
-            }
-        };
-
-        // Attach the event listener
-        document.addEventListener("mousedown", handleClickOutside);
-
-        // Clean up the event listener on unmount
-        return () =>
-        {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-        // eslint-disable-next-line
-    }, []);
-
+        dispatch(addArticle(body))
+    }
     return (
         <>
             <div>
@@ -77,7 +42,7 @@ const Articles = () =>
                                 <p className="article_head">Articles</p>
                             </div>
                             <div className="article_right">
-                                <button>Add</button>
+                                <button onClick={handleAdd}>Add</button>
                             </div>
                         </div>
                         <div className="article_parent">
