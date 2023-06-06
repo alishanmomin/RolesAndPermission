@@ -21,7 +21,7 @@ const Articles = () =>
     {
         if (!formData.date || !formData.id || !formData.title || !formData.description || !formData.author)
         {
-            toast.error("Fill all fields")
+            toast.error("All fields are required")
         } else
         {
             dispatch(addArticle(formData))

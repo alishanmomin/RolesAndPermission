@@ -22,7 +22,7 @@ const Login = () =>
 
         if (!formData.name || !formData.email || !formData.password || !formData.role)
         {
-            toast.error("Fill all the fields")
+            toast.error("All fields are required")
 
         } else
         {
