@@ -1,18 +1,9 @@
 import React, { useState} from "react";
-import { useDispatch } from "react-redux";
-import { removeArticle } from "../../redux/reducers/articles";
-import { toast } from "react-toastify";
 
-const ArticleCards = ({ item }) =>
+const ArticleCards = ({ item, handleDelete, setModal, setValues }) =>
 {
     const [clickIndex, setClickIndex] = useState(false);
-    const dispatch = useDispatch()
 
-    const handleDelete = (id) => {
-        dispatch(removeArticle(id))
-        toast.warn("Deleted Successfully")
-        setClickIndex(false)
-    }
     return (
         <div className="article_all">
             <div className="article_content">
@@ -29,8 +20,11 @@ const ArticleCards = ({ item }) =>
                         {
                             clickIndex && 
                         <div className="article_toolTip shadow">
-                            <div onClick={() => handleDelete(item.id)}>
-                                <i class="fa-regular fa-trash-can"></i> Delete
+                            <div onClick={() => {handleDelete(item.id); setClickIndex(false)}}>
+                                <i class="fas fa-trash"></i> Delete
+                            </div>
+                            <div onClick={() => {setValues(item); setModal('edit'); setClickIndex(false)}}>
+                                <i class="fas fa-edit"></i> Update
                             </div>
                         </div>
                         }

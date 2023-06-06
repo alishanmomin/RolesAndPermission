@@ -5,7 +5,6 @@ import PrivateRoute from "./PrivateRoute"
 
 const Login = lazy(() => import("../pages/Login"));
 const Articles = lazy(() => import("../pages/Articles"));
-const Products = lazy(() => import("../pages/Products"));
 
 const MyRoutes = () => {
   const isLogged = localStorage?.getItem("isLogged");
@@ -20,7 +19,6 @@ const MyRoutes = () => {
             <Route path="*" element={isLogged ? (<Navigate to="/articles" replace />) : (<Navigate to="/login" replace />)}/>
             <Route element={<PrivateRoute isLogged={isLogged} />}>
               <Route path="/articles" element={<Articles />} />
-              <Route path="/products" element={<Products />} />
             </Route>
           </Routes>
         </Suspense>

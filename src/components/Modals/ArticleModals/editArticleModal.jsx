@@ -1,16 +1,17 @@
 import React from "react";
 
-const AddArticle = ({ setModal, handleAddArticle, setFormData, formData }) =>
+const EditArticle = ({ setModal, handleUpdate, values, setValues }) =>
 {
-    const handleInput = (e) => {
-        setFormData({...formData, [e.target.name]: e.target.value})
-    }    
+    console.log("values", values)
 
+    const handleInput = (e) => {
+        setValues({...values, [e.target.name]: e.target.value})
+    }    
     return (
         <div className="addArticle">
             <div className="addArticle_inner">
                 <div className="addArticle_topHead">
-                    <p>Create Article</p>
+                    <p>Edit Article</p>
                     <i onClick={() => setModal("")} className="cross fas fa-times"></i>
                 </div>
 
@@ -18,49 +19,48 @@ const AddArticle = ({ setModal, handleAddArticle, setFormData, formData }) =>
                     <div className="addArticle_inputWrapper">
                         <div>
                             <label>ID</label>
-                            <input onChange={handleInput} name='id' type="text" placeholder="Enter unique id" />
+                            <input onChange={handleInput} disabled value={values?.id} name='id' type="text" placeholder="Enter unique id" />
                         </div>
 
                         <div>
                             <label>Date</label>
-                            <input type="date" onChange={handleInput} name='date'/>
+                            <input type="date" onChange={handleInput} name='date' value={values?.date}/>
                         </div>
                     </div>
 
                     <div className="addArticle_inputWrapper">
                         <div>
                             <label>Title</label>
-                            <input type="text" placeholder="Enter Title" onChange={handleInput} name='title' />
+                            <input type="text" placeholder="Enter Title" onChange={handleInput} name='title' value={values?.title}/>
                         </div>
 
                         <div>
                             <label>Author</label>
-                            <input type="text" placeholder="Author" onChange={handleInput} name='author' />
-                        </div>
-                    </div>
-                    <div className="addArticle_inputWrapperFull">
-                        <div>
-                            <label>Designation</label>
-                            <input type="text" placeholder="Enter Designation" onChange={handleInput} name='designation' />
+                            <input type="text" placeholder="Author" onChange={handleInput} name='author' value={values?.author}/>
                         </div>
                     </div>
                 </div>
-
+                <div className="addArticle_inputWrapperFull">
+                        <div>
+                            <label>Designation</label>
+                            <input type="text" placeholder="Enter Designation" onChange={handleInput} name='designation' value={values?.designation}/>
+                        </div>
+                    </div>
                 <div className="addArticle_inputWrapperFull">
                     <div>
                         <label>Description</label>
                     </div>
                 </div>
                 <div className="addArticle_description">
-                    <textarea placeholder="Description" onChange={handleInput} name='description'> </textarea>
+                    <textarea placeholder="Description" onChange={handleInput} name='description' value={values?.description}> </textarea>
                 </div>
 
                 <div className="addArticle_button">
-                    <button onClick={() => { handleAddArticle()}}>Submit</button>
+                    <button onClick={handleUpdate}>Submit</button>
                 </div>
             </div>
         </div>
     );
 };
 
-export default AddArticle;
+export default EditArticle;

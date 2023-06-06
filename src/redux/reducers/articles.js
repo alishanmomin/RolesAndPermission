@@ -11,13 +11,19 @@ const articles = createSlice({
     reducers: {
         addArticle: (state, { payload }) =>
         {
-            console.log("payload", payload)
             state.ArticleData = [...state.ArticleData, payload];
         },
-        // updateArticle: (state, { payload }) =>
-        // {
-        //     state.ArticleData = [...state.ArticleData, payload.data];
-        // },
+        updateArticle: (state, { payload }) =>
+        {
+            const index = state.ArticleData.findIndex(elem => elem.id === payload.id);
+            if (index !== -1)
+            {
+                state.ArticleData[index] = { ...state.ArticleData[index], ...payload };
+            } else
+            {
+                state.ArticleData.push(...payload);
+            }
+        },
         removeArticle: (state, { payload }) =>
         {
             const NewData = state.ArticleData.filter((item) => item.id !== payload);
@@ -28,7 +34,8 @@ const articles = createSlice({
 
 export const {
     addArticle,
-    removeArticle
+    removeArticle,
+    updateArticle
 } = articles.actions;
 
 export default articles.reducer;

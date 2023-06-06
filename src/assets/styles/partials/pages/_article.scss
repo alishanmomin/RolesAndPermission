@@ -92,7 +92,6 @@
     &_main {
       display: flex;
       justify-content: space-between;
-      margin: 20px 0;
       flex-wrap: wrap;
     }
   
@@ -168,13 +167,19 @@
       align-items: flex-start;
       width: 120px !important;
       z-index: 99;
-  
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    
+      i {
+        color: gray;
+        font-size: 17px;
+      }
       div {
         width: 100%;
         cursor: pointer;
         margin: 2px 0 !important;
         transition: 0.3ms ease;
         padding: 5px 8px;
+        
       }
   
       div:hover {
