@@ -1,9 +1,9 @@
-import React, { useRef, useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 // import Navbar from '../Navbar'
 
-const Sidebar = ({ index }) =>
+const Sidebar = ({index}) =>
 {
     const navigate = useNavigate()
 
@@ -18,27 +18,18 @@ const Sidebar = ({ index }) =>
             navigate(`/${ route }`);
         }
     };
-
-    const handleLogout = () =>
-    {
-        localStorage.clear();
-        window.location.reload();
-    };
-
-
-
     return (
         <>
             {<div className="sideBar sideBar_sidebarActive">
                     <div className="sideBar_inner">
-                        <div onClick={() => handleRoute('articles')}  className="sideBar_title sideBar_active">
-                            <i className="fa-solid fa-house"></i>Articles
+                        <div onClick={() => handleRoute('articles')}  className={index === 1 ? "sideBar_title sideBar_active": "sideBar_title"}>
+                            <i className="fas fa-home"></i>Articles
                         </div>
-                        <div onClick={() => handleRoute('products')} className="sideBar_title">
-                            <i className="fa-solid fa-user"></i>Products
+                        <div onClick={() => handleRoute('products')} className={index === 2 ? "sideBar_title sideBar_active": "sideBar_title"}>
+                            <i className="fas fa-user"></i>Products
                         </div>
                         <div onClick={() => handleRoute('logout')} className="sideBar_title">
-                            <i className="fa-solid fa-power-off"></i>Logout
+                            <i className="fas fa-power-off"></i>Logout
                         </div>
                     </div>
                 </div>

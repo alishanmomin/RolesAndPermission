@@ -86,7 +86,7 @@
   
     &_title {
       color: #e7e7e7;
-      font-size: 12px;
+      font-size: 17px;
       opacity: 1;
       padding: 5px 15px;
       white-space: nowrap;
@@ -94,20 +94,16 @@
       cursor: pointer;
       margin-top: 20px;
       transition: 0.3s ease-in;
-  
+        
+      i {
+        margin-right: 10px;
+      }
     }
   
     &_title:hover {
       color: #ff9b44;
     }
-  
-    .fa-chevron-down,
-    .fa-chevron-right {
-      position: absolute;
-      right: 12px;
-      top: 8px;
-    }
-  
+    
     .fa-solid,
     .fa-regular {
       font-size: 17px;

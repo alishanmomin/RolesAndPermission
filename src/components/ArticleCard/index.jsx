@@ -1,14 +1,17 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState} from "react";
 import { useDispatch } from "react-redux";
 import { removeArticle } from "../../redux/reducers/articles";
+import { toast } from "react-toastify";
 
-const ArticleCards = ({ item, index, setModal }) =>
+const ArticleCards = ({ item }) =>
 {
     const [clickIndex, setClickIndex] = useState(false);
     const dispatch = useDispatch()
 
     const handleDelete = (id) => {
         dispatch(removeArticle(id))
+        toast.warn("Deleted Successfully")
+        setClickIndex(false)
     }
     return (
         <div className="article_all">

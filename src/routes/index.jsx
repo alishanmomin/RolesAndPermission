@@ -3,9 +3,9 @@ import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import Loader from "../components/Loader";
 import PrivateRoute from "./PrivateRoute"
 
-const Home = lazy(() => import("../pages/Home"));
 const Login = lazy(() => import("../pages/Login"));
 const Articles = lazy(() => import("../pages/Articles"));
+const Products = lazy(() => import("../pages/Products"));
 
 const MyRoutes = () => {
   const isLogged = localStorage?.getItem("isLogged");
@@ -17,10 +17,10 @@ const MyRoutes = () => {
         <Suspense fallback={<Loader />}>
           <Routes>
             {!isLogged && <Route path="/login" element={<Login />} />}
-            <Route path="*" element={isLogged ? (<Navigate to="/" replace />) : (<Navigate to="/login" replace />)}/>
+            <Route path="*" element={isLogged ? (<Navigate to="/articles" replace />) : (<Navigate to="/login" replace />)}/>
             <Route element={<PrivateRoute isLogged={isLogged} />}>
-              <Route path="/" element={<Home />} />
               <Route path="/articles" element={<Articles />} />
+              <Route path="/products" element={<Products />} />
             </Route>
           </Routes>
         </Suspense>
