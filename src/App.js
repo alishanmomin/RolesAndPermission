@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/styles/app.scss";
 import "react-toastify/dist/ReactToastify.css";
+import "./assets/fontawesome/css/all.css";
 import { ToastContainer } from "react-toastify";
 
 import MyRoutes from "./routes";
